@@ -15,7 +15,18 @@ class BookAdmin(admin.ModelAdmin):
 class AuthorAdmin(UserAdmin):
     list_display = UserAdmin.list_display + ("pseudonym",)
     fieldsets = UserAdmin.fieldsets + (("Additional info", {"fields": ("pseudonym",)}),)
-    add_fieldsets = UserAdmin.add_fieldsets + (("Additional info", {"fields": ("first_name", "last_name", "pseudonym",)}),)
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        (
+            "Additional info",
+            {
+                "fields": (
+                    "first_name",
+                    "last_name",
+                    "pseudonym",
+                )
+            },
+        ),
+    )
 
 
 admin.site.register(LiteraryFormat)

@@ -6,7 +6,7 @@ from django.urls import reverse
 
 class LiteraryFormat(models.Model):
     name = models.CharField(max_length=255)
-    word_count = models.IntegerField(null=True )
+    word_count = models.IntegerField(null=True)
     annotation = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
@@ -29,10 +29,9 @@ class Author(AbstractUser):
 class Book(models.Model):
     title = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=7, decimal_places=2)
-    format = models.ForeignKey(LiteraryFormat,
-                               on_delete=models.SET_NULL,
-                               related_name="books",
-                               null=True)
+    format = models.ForeignKey(
+        LiteraryFormat, on_delete=models.SET_NULL, related_name="books", null=True
+    )
     authors = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="books")
 
     class Meta:

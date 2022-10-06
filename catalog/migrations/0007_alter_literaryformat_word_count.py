@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('catalog', '0006_literaryformat_annotation_literaryformat_word_count'),
+        ("catalog", "0006_literaryformat_annotation_literaryformat_word_count"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='literaryformat',
-            name='word_count',
+            model_name="literaryformat",
+            name="word_count",
             field=models.IntegerField(null=True),
         ),
     ]

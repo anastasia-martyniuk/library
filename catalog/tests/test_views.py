@@ -19,10 +19,7 @@ class PublicLiteraryFormatTests(TestCase):
 
 class PrivateLiteraryFormatTests(TestCase):
     def setUp(self) -> None:
-        self.user = get_user_model().objects.create_user(
-            "test",
-            "password123"
-        )
+        self.user = get_user_model().objects.create_user("test", "password123")
         self.client.force_login(self.user)
 
     def test_retrieve_literary_formats(self):
@@ -35,7 +32,6 @@ class PrivateLiteraryFormatTests(TestCase):
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(
-            list(res.context["literary_format_list"]),
-            list(literary_formats)
+            list(res.context["literary_format_list"]), list(literary_formats)
         )
         self.assertTemplateUsed(res, "catalog/literary_format_list.html")

@@ -36,17 +36,20 @@ class LiteraryFormatForm(forms.ModelForm):
 
 
 class AuthorCreationForm(UserCreationForm):
-
     class Meta:
         model = Author
-        fields = UserCreationForm.Meta.fields + ("first_name", "last_name", "pseudonym",)
+        fields = UserCreationForm.Meta.fields + (
+            "first_name",
+            "last_name",
+            "pseudonym",
+        )
 
 
 class BookForm(forms.ModelForm):
     authors = forms.ModelMultipleChoiceField(
         queryset=get_user_model().objects.all(),
         widget=forms.CheckboxSelectMultiple,
-        required=False
+        required=False,
     )
 
     class Meta:
@@ -59,5 +62,5 @@ class BookSearchForm(forms.Form):
         max_length=255,
         required=False,
         label="",
-        widget=forms.TextInput(attrs={"placeholder": "Search by title"})
+        widget=forms.TextInput(attrs={"placeholder": "Search by title"}),
     )

@@ -5,7 +5,12 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views import generic
 
-from catalog.forms import LiteraryFormatForm, AuthorCreationForm, BookForm, BookSearchForm
+from catalog.forms import (
+    LiteraryFormatForm,
+    AuthorCreationForm,
+    BookForm,
+    BookSearchForm,
+)
 from catalog.models import Book, Author, LiteraryFormat
 
 
@@ -59,9 +64,7 @@ class BookListView(LoginRequiredMixin, generic.ListView):
         form = BookSearchForm(self.request.GET)
 
         if form.is_valid():
-            return self.queryset.filter(
-                title__icontains=form.cleaned_data["title"]
-            )
+            return self.queryset.filter(title__icontains=form.cleaned_data["title"])
 
 
 class BookDetailView(LoginRequiredMixin, generic.DetailView):
@@ -71,13 +74,13 @@ class BookDetailView(LoginRequiredMixin, generic.DetailView):
 class BookCreateView(LoginRequiredMixin, generic.CreateView):
     model = Book
     form_class = BookForm
-    success_url = reverse_lazy('catalog:book-list')
+    success_url = reverse_lazy("catalog:book-list")
 
 
 class BookUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Book
     form_class = BookForm
-    success_url = reverse_lazy('catalog:book-list')
+    success_url = reverse_lazy("catalog:book-list")
 
 
 class AuthorListView(LoginRequiredMixin, generic.ListView):
@@ -87,13 +90,12 @@ class AuthorListView(LoginRequiredMixin, generic.ListView):
 class AuthorsCreateView(LoginRequiredMixin, generic.CreateView):
     model = Author
     form_class = AuthorCreationForm
-    success_url = reverse_lazy('catalog:author-list')
+    success_url = reverse_lazy("catalog:author-list")
 
 
 def test_session_view(request):
     return HttpResponse(
-        "<h1>Test Session</h1>"
-        f"<h4>Session data: {request.session['book']}</h4>"
+        "<h1>Test Session</h1>" f"<h4>Session data: {request.session['book']}</h4>"
     )
 
 
@@ -102,6 +104,7 @@ class LiteraryFormatCreateView(LoginRequiredMixin, generic.CreateView):
     form_class = LiteraryFormatForm
     template_name = "catalog/literary_format_form.html"
     success_url = reverse_lazy("catalog:literary-format-list")
+
 
 # def literary_formats_create(request):
 #     context = {}
@@ -115,23 +118,23 @@ class LiteraryFormatCreateView(LoginRequiredMixin, generic.CreateView):
 #     context["form"] = form
 #     return render(request, "catalog/literary_format_form.html", context=context)
 
-    # if request.method == "GET":
-    #     context = {
-    #         "form": LiteraryFormatForm(),
-    #     }
-    #     return render(request, "catalog/literary_format_form.html", context=context)
-    #
-    # elif request.method == "POST":
-    #     form = LiteraryFormatForm(request.POST)
-    #
-    #     if form.is_valid():
-    #         LiteraryFormat.objects.create(**form.cleaned_data)
-    #         return HttpResponseRedirect(reverse("catalog:literary-format-list"))
-    #     context = {
-    #         "form": form
-    #     }
-    #
-    #     return render(request, "catalog/literary_format_form.html", context=context)
+# if request.method == "GET":
+#     context = {
+#         "form": LiteraryFormatForm(),
+#     }
+#     return render(request, "catalog/literary_format_form.html", context=context)
+#
+# elif request.method == "POST":
+#     form = LiteraryFormatForm(request.POST)
+#
+#     if form.is_valid():
+#         LiteraryFormat.objects.create(**form.cleaned_data)
+#         return HttpResponseRedirect(reverse("catalog:literary-format-list"))
+#     context = {
+#         "form": form
+#     }
+#
+#     return render(request, "catalog/literary_format_form.html", context=context)
 
 
 class LiteraryFormatUpdateView(LoginRequiredMixin, generic.UpdateView):
