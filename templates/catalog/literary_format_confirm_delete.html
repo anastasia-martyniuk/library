@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Delete literary format</h1>
+  <p>You want to delete the literary format: {{ literaryformat }}, are you sure?</p>
+  <p>All books with this literary format will be also delete!</p>
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Yes, delete!" class="btn-outline-info btn-danger" />
+  </form>
+{% endblock %}
