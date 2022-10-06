@@ -26,4 +26,4 @@ What's all the bells and whistles this project can perform?
 
 ## Demo
 
-![Website Interface] (img.png)
+![Website Interface](img.png)
