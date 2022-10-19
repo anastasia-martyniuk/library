@@ -12,3 +12,5 @@ sqlparse==0.4.3
 tomli==2.0.1
 typing_extensions==4.3.0
 tzdata==2022.2
+dj_database_url==1.0.0
+psycopg==3.1.3
